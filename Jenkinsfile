@@ -54,6 +54,19 @@ pipeline {
         '''
       }
     }
+    stage('SonarCloud Analysis') {
+      steps {
+        withSonarQubeEnv('sonarcloud') {
+      	  sh '''
+            sonar-scanner \
+              -Dsonar.projectKey=<PROJECT_KEY> \
+              -Dsonar.organization=<ORG_KEY> \
+              -Dsonar.sources=. \
+              -Dsonar.branch.name=master
+          '''
+        }
+      }
+    }
   }
 }
 
