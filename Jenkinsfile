@@ -59,13 +59,13 @@ pipeline {
         withSonarQubeEnv('sonarcloud') {
 	  script {
 	    def scannerHome = tool 'sonar-scanner'
-      	    sh '''
+      	    sh """
               ${scannerHome}/bin/sonar-scanner \
                 -Dsonar.projectKey=Harshad75_cicd-kube-docker-1 \
                 -Dsonar.organization=harshad75 \
                 -Dsonar.sources=. \
                 -Dsonar.branch.name=master
-            '''
+            """
 	  }
         }
       }
