@@ -61,8 +61,8 @@ pipeline {
 	    def scannerHome = tool 'sonar-scanner'
       	    sh '''
               ${scannerHome}/bin/sonar-scanner \
-                -Dsonar.projectKey=harshad75 \
-                -Dsonar.organization=Harshad75_cicd-kube-docker-1 \
+                -Dsonar.projectKey=Harshad75_cicd-kube-docker-1 \
+                -Dsonar.organization=harshad75 \
                 -Dsonar.sources=. \
                 -Dsonar.branch.name=master
             '''
