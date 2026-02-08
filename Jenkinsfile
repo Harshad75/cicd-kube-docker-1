@@ -59,8 +59,8 @@ pipeline {
         withSonarQubeEnv('sonarcloud') {
       	  sh '''
             sonar-scanner \
-              -Dsonar.projectKey=<PROJECT_KEY> \
-              -Dsonar.organization=<ORG_KEY> \
+              -Dsonar.projectKey=harshad75 \
+              -Dsonar.organization=Harshad75_cicd-kube-docker-1 \
               -Dsonar.sources=. \
               -Dsonar.branch.name=master
           '''
