@@ -57,13 +57,16 @@ pipeline {
     stage('SonarCloud Analysis') {
       steps {
         withSonarQubeEnv('sonarcloud') {
-      	  sh '''
-            sonar-scanner \
-              -Dsonar.projectKey=harshad75 \
-              -Dsonar.organization=Harshad75_cicd-kube-docker-1 \
-              -Dsonar.sources=. \
-              -Dsonar.branch.name=master
-          '''
+	  script {
+	    def scannerHome = tool 'sonar-scanner'
+      	    sh '''
+              ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.projectKey=harshad75 \
+                -Dsonar.organization=Harshad75_cicd-kube-docker-1 \
+                -Dsonar.sources=. \
+                -Dsonar.branch.name=master
+            '''
+	  }
         }
       }
     }
