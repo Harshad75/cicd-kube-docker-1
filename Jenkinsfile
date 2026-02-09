@@ -7,6 +7,7 @@ pipeline {
   parameters {
     string(name: 'IMAGE_NAME', defaultValue: 'index-page', description: 'Docker image name')
     string(name: 'IMAGE_TAG',  defaultValue: '1.0', description: 'Docker image tag')
+    string(name: 'namespace', defaultValue: 'test', description: 'Helm Namespace')
   }
 
   environment {
@@ -58,7 +59,11 @@ pipeline {
       steps {
         sh """
         helm upgrade --install index-page helm/index-html \
-          --set image.tag=${IMAGE_TAG}
+          --set image.tag=${IMAGE_TAG} \
+	  --namespace ${namespace} \
+          --wait \
+          --atomic \
+          --timeout 5m
         """
       }
     } 
