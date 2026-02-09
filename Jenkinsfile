@@ -57,7 +57,7 @@ pipeline {
     stage('Deploy the Application') {
       steps {
         sh """
-        helm upgrade --install index-page helm/index-page \
+        helm upgrade --install index-page helm/index-html \
           --set image.tag=${IMAGE_TAG}
         """
       }
