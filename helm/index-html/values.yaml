@@ -1,0 +1,10 @@
+image:
+  repository: 563893393229.dkr.ecr.us-east-1.amazonaws.com/html-app
+  tag: "latest"
+service:
+  type: LoadBalancer
+namespace: first-namespace
+replicas: 2
+serviceAccount:
+  name: ecr-sa
+

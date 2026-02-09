@@ -48,28 +48,20 @@ pipeline {
 
     stage('Tag & Push to ECR') {
       steps {
-        sh '''
+        sh """
           docker tag ${IMAGE_NAME}:${IMAGE_TAG} $ECR_REPO:${IMAGE_TAG}
           docker push $ECR_REPO:${IMAGE_TAG}
-        '''
+        """
       }
     }
-    stage('SonarCloud Analysis') {
+    stage('Deploy the Application') {
       steps {
-        withSonarQubeEnv('sonarcloud') {
-	  script {
-	    def scannerHome = tool 'sonar-scanner'
-      	    sh """
-              ${scannerHome}/bin/sonar-scanner \
-                -Dsonar.projectKey=Harshad75_cicd-kube-docker-1 \
-                -Dsonar.organization=harshad75 \
-                -Dsonar.sources=. \
-                -Dsonar.branch.name=master
-            """
-	  }
-        }
+        sh """
+        helm upgrade --install index-page helm/index-page \
+          --set image.tag=${IMAGE_TAG}
+        """
       }
-    }
+    } 
   }
 }
 
