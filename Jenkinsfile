@@ -1,7 +1,7 @@
 pipeline {
   agent { 
     node { 
-      labiel 'agentkubernetes'
+      label 'agentkubernetes'
     }
   }
   parameters {
