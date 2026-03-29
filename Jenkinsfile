@@ -5,9 +5,9 @@ pipeline {
     }
   }
   parameters {
-    string(name: 'IMAGE_NAME', defaultValue: 'index-page', description: 'Docker image name')
+    string(name: 'IMAGE_NAME', defaultValue: 'html-app', description: 'Docker image name')
     string(name: 'IMAGE_TAG',  defaultValue: '1.0', description: 'Docker image tag')
-    string(name: 'namespace', defaultValue: 'test', description: 'Helm Namespace')
+    string(name: 'namespace', defaultValue: 'first-namespace', description: 'Helm Namespace')
   }
 
   environment {
